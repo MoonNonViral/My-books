@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Book List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.5);
+        }
+    </style>
+</head>
+<body>
+    <h1>My Book List</h1>
+    <ul id="book-list">
+        <!-- Books will be dynamically inserted here -->
+    </ul>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const books = [
+                { title: "Atomic Habits", gotIt: true },
+                { title: "Can't Hurt Me", gotIt: true },
+                { title: "Achievement II", gotIt: false }
+            ];
+
+            const bookList = document.getElementById("book-list");
+
+            books.forEach(book => {
+                const li = document.createElement("li");
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.checked = book.gotIt;
+                checkbox.addEventListener("change", () => {
+                    book.gotIt = checkbox.checked;
+                });
+
+                li.textContent = book.title;
+                li.appendChild(checkbox);
+                bookList.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>
